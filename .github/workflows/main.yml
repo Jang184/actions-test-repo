@@ -24,11 +24,11 @@ jobs:
         run: npm run build
 
       - name: 🌠 configure aws credentials
-        uses: aws-actions/configure-aws-crendentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: ap-northeast-2
 
       - name: 🚛 Upload to S3
-        run: aws s3 sync ./build/ s3://${{ env.S3_BUCKET_NAME }}/
+        run: aws s3 sync ./build/ s3://${{ secrets.S3_BUCKET_NAME }}/
